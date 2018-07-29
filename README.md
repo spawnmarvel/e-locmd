@@ -4,9 +4,13 @@
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 <br>
 ### Build
-First thing to know about cmd.Cmd: you subclass it and customize the subclass to be your command prompt.The methods of this subclass that begin with do_ are now your prompt commands """
-
+First thing to know about cmd.Cmd: you subclass it and customize the subclass to be your command prompt.The methods of this subclass that begin with do_ are now your prompt commands.
+<br>
 class MyCommand(Cmd):
+<br>
+def do_book_list(self, args):
+
+
 ### Prerequisites
 
 TBD
