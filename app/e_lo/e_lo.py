@@ -2,7 +2,10 @@ from datetime import datetime
 import random
 from app.e_lo_response import responses
 from e_lo_db import db_handler
+""" Elo is the interface to all functions, a controller. 
+    Elo must be generic, since it will be used in Django, only MyCommand will be repalced in Django
 
+"""
 class Elo():
 
 
@@ -30,7 +33,10 @@ class Elo():
         return self.response
 
     def get_book(self, args):
-        return format(args)
+        return db_handler.select_book(args)
+
+    def get_books(self):
+        return db_handler.get_books()
 
     def index_book(self, args):
         return "Indexing book " + format(args) + " to db .....\nbook saved"
