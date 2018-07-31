@@ -19,32 +19,31 @@ class Elo():
         self.response = None
         self.version = 1.1
 
+    # implemented
     def __repr__(self):
         return repr("<Elo name:" +self.name)
-
+    # implemented
     def toString(self):
         return format(self.name) + ". Age " + format(self.age) + ". V" + format(self.version)
-
+    # implemented, must work on
     def greeting(self): 
         self.response = responses.get_ran_response()
         return self.response
+    # implemented, must work on
     def do_math(self): 
         self.response = "Ready for math"
         return self.response
-
+    # implemented, ok
     def get_book(self, args):
         return db_handler.select_book(args)
-
+    # implemented, ok
     def get_books(self):
         return db_handler.get_books()
-
-    def index_book(self, args):
-        return "Indexing book " + format(args) + " to db .....\nbook saved"
-
-    def save_book(self, title, args):
+    # implemented, ok
+    def insert_book(self, title, args):
         rv = db_handler.insert_book(title, args)
         return "Saved: " + format(rv)
-
+    # implemented, must work on
     def search_book(self, book, args):
         todo = args.lower()
         if todo.startswith("nam"):
@@ -57,6 +56,9 @@ class Elo():
             return "Key search: time for "  + self.get_book(book)
         else:
             return "Unknown key for " + format(book) + ". Key search: " + format(args)
+    # not implemented
+    def index_book(self, args):
+        return "Indexing book " + format(args) + " to db .....\nbook saved"
 
 
 
