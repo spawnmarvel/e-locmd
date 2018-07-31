@@ -1,7 +1,7 @@
 from datetime import datetime
 import random
 from app.e_lo_response import responses
-from e_lo_db import db_handler
+from app.e_lo_db import db_handler
 """ Elo is the interface to all functions, a controller. 
     Elo must be generic, since it will be used in Django, only MyCommand will be repalced in Django
 
@@ -34,30 +34,43 @@ class Elo():
         self.response = "Ready for math"
         return self.response
     # implemented, ok
-    def get_book(self, args):
+    def get_txt(self, args):
+        # 1 = id, 2 = title, 3 = txt
+        # print(db_handler.select_book(args))
         return db_handler.select_book(args)
     # implemented, ok
-    def get_books(self):
+    def get_txt_all(self):
         return db_handler.get_books()
     # implemented, ok
-    def insert_book(self, title, args):
+    def insert_txt(self, title, args):
         rv = db_handler.insert_book(title, args)
         return "Saved: " + format(rv)
     # implemented, must work on
-    def search_book(self, book, args):
+    def search_txt(self, book, args):
         todo = args.lower()
-        if todo.startswith("nam"):
-            return "Key search: names from "  + self.get_book(book)
-        elif todo.startswith("pla"):
-            return "Key search: places from "  + self.get_book(book)
-        elif todo.startswith("plo"):
-            return "Key search: plot for "  + self.get_book(book)
-        elif todo.startswith("ti"):
-            return "Key search: time for "  + self.get_book(book)
+        check_book = self.get_txt(book)
+        return_book = ""
+        rv  = ""
+        if check_book == None:
+            print("No book with that name: " + return_book)
+            return_book = "Not a book"
+            rv = return_book
         else:
-            return "Unknown key for " + format(book) + ". Key search: " + format(args)
+            # get the title in [1]
+            return_book = check_book[1]
+            if todo.startswith("nam"):
+                rv = "Key search: names from "  + return_book
+            elif todo.startswith("pla"):
+                rv = "Key search: places from "  + return_book
+            elif todo.startswith("plo"):
+                rv = "Key search: plot for "  + return_book
+            elif todo.startswith("ti"):
+                rv = "Key search: time for "  + return_book
+            else:
+                rv = "Unknown key for " + format(book) + ". Key search: " + format(args) + " type help txt_search"
+        return rv
     # not implemented
-    def index_book(self, args):
+    def index_txt(self, args):
         return "Indexing book " + format(args) + " to db .....\nbook saved"
 
 

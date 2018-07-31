@@ -49,7 +49,7 @@ def get_books():
     return msg
 
 def insert_book(title, note):
-    msg = "db insert"
+    msg = ""
     try:
         n_title = str(title)
         n_note = str(note)
@@ -60,7 +60,7 @@ def insert_book(title, note):
             global sql_insert_book
             cur.execute(sql_insert_book, (n_title, n_note))
             conn.commit()
-            row = "Db book saved"
+            row = "Db txt saved"
             msg = row
     except sqlite3.OperationalError as e:
         msg = e

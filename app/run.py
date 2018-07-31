@@ -1,5 +1,6 @@
 from app.commands import my_command
 from app.e_lo_db import db_handler
+import unittest
 
 def prerequisite_app():
     print("***************************************")
@@ -10,10 +11,10 @@ def prerequisite_app():
     print("***************************************")
 
 if __name__ == "__main__":
-   
     prerequisite_app()
     # cmd's
     my_cmd = my_command.MyCommand()
     my_cmd.prompt = ">"
     my_cmd.cmdloop(my_cmd.about())
+
     

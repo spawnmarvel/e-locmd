@@ -30,13 +30,13 @@ class MyCommand(Cmd):
         print(self.elo.do_math())
 
     # implemented, ok
-    def do_book_get(self, args):
+    def do_txt_get(self, args):
         """Get the book, with title args and shows it on on screen if it exists"""
         if len(args) == 0:
-            print("Books saved is:  " + format(MyCommand.elo.get_books()) + ". Type book_get title")
+            print("Books saved is:  " + format(MyCommand.elo.get_txt_all()) + ". Type book_get title")
         else:
             print("Trying to fetch book> " + format(args))
-            rv = MyCommand.elo.get_book(args)
+            rv = MyCommand.elo.get_txt(args)
             if rv == None:
                 print("No book named " + format(args))
             else:
@@ -45,7 +45,7 @@ class MyCommand(Cmd):
                 # print(db_handler.delete_book(args))
 
     # implemented, ok
-    def do_book_list(self, args):
+    def do_txt_list(self, args):
         """List all the books in app-books, stored the book in args if present and the file exists"""
         try:
             for root, dirs, files in os.walk("./information"):
@@ -53,18 +53,18 @@ class MyCommand(Cmd):
                     print(filename)
                     if len(args) > 0:
                         if filename == args:
-                            rv = MyCommand.elo.get_book(args)
+                            rv = MyCommand.elo.get_txt(args)
                             if rv[1] == args:
                                 print("Book " + format(rv[1]) + " is already saved")
                             else:
                                 note = helper.read_file(filename)
-                                MyCommand.elo.insert_book(args, note)
+                                MyCommand.elo.insert_txt(args, note)
                    
         except Exception as ex:
             print(ex)
                     
     # implemnented, must work on
-    def do_book_search(self, args):
+    def do_txt_search(self, args):
         """Search a book for :\n["names", "nam", "places", "pla", "plot", "plo", "time", "ti", ]
         \nbook_search hero names"""
         try:
@@ -72,14 +72,14 @@ class MyCommand(Cmd):
             book = tmp[0]
             search_word = tmp[1]
             if len(book) == 0:
-                book = "That is not a book to save"
+                book = "That is not a saved book"
             else:
                 book = book
-            print(MyCommand.elo.search_book(book, search_word))
+            print(MyCommand.elo.search_txt(book, search_word))
         except IndexError as i:
             print("Invalid params in cmd, type help")
 
-    def do_book_data(self, args):
+    def do_txt_data(self, args):
           """TextBlob functions is used here, book_data title key"""
           try:
               tmp = args.split(" ")
