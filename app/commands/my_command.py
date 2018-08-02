@@ -5,6 +5,7 @@ import os
 from utility import helper
 # e-lo
 from app.e_lo import e_lo as cls_elo
+from app.e_lo_db import db_handler
 
 
 """ First thing to know about cmd.Cmd: you subclass it and customize the subclass to be your command prompt."""
@@ -41,7 +42,7 @@ class MyCommand(Cmd):
             else:
                 # print(rv)
                 print("***\n" + rv[2] + "\n***")
-                # print(db_handler.delete_book(args))
+                # print(db_handler.delete_book("redhood.txt"))
 
     # implemented, ok
     def do_txt_list(self, args):
@@ -49,7 +50,7 @@ class MyCommand(Cmd):
         try:
             for root, dirs, files in os.walk("./information"):
                 for filename in files:
-                    print(filename)
+                    # print(filename)
                     if len(args) > 0:
                         if filename == args:
                             rv = MyCommand.elo.get_txt(args)
@@ -87,6 +88,7 @@ class MyCommand(Cmd):
     def do_txt_data(self, args):
           """TextBlob functions is used here, book_data title"""
           try:
+              print("add amount of words in file read, store in db")
               book = args
               tmp = MyCommand.elo.data_txt(book)
               name = tmp[0]
@@ -95,13 +97,13 @@ class MyCommand(Cmd):
               print(name)
               s = set(noun)
               print("Nouns all " + format(len(noun)) + ", distinct " + format(len(s)))
-              print("Nouns\n" + format(s))
+              print("Nouns original\n" + format(noun))
               c = 0
               for sen in blob.sentences:
-                  print("Sentence " + format(c) + "\n" + format(sen))
+                  # print("Sentence " + format(c) + "\n" + format(sen))
                   c += 1
           except Exception as ex:
-              print("Please give a valid cmd and select a txt that is saved.\ntxt_data title. Exception:" + format(ex))
+              print("Please give a valid cmd and select a txt that is saved.\ntxt_data title. Exception:" + format(ex) + "\nSaved is " + format(MyCommand.elo.get_txt_all()))
 
     # implemented, must work on
     def do_talk(self, args):
