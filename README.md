@@ -1,4 +1,4 @@
-# e-lo the chatbot cmd with NLP
+# e-lo the chatbot cmd with NLP using TextBlob
 # v 1.1
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -59,6 +59,8 @@ Branch: master and test.
 ## Acknowledgments
 
 * http://pythontesting.net/framework/unittest/unittest-introduction/
+* https://www.analyticsvidhya.com/blog/2018/02/natural-language-processing-for-beginners-using-textblob/
+
 
 
 

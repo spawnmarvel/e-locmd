@@ -53,15 +53,20 @@ class MyCommand(Cmd):
                     if len(args) > 0:
                         if filename == args:
                             rv = MyCommand.elo.get_txt(args)
-                            if rv[1] == args:
-                                print("Book " + format(rv[1]) + " is already saved")
+                            # if return from get_text is none, we have not saved the book before
+                            if rv != None:
+                                if rv[1] == args:
+                                    print("Book " + format(rv[1]) + " is already saved")      
                             else:
                                 # will not use file reader on django, only db
+                                # the book from gte_text is none, w ehave not saved it before
+                                print("store file")
                                 note = helper.read_file(filename)
                                 MyCommand.elo.insert_txt(args, note)
+                            
                    
         except Exception as ex:
-            print(ex)
+            print("here \n" + format(ex))
                     
     # implemnented, must work on
     def do_txt_search(self, args):
@@ -83,13 +88,18 @@ class MyCommand(Cmd):
           """TextBlob functions is used here, book_data title"""
           try:
               book = args
-              print("Get data for " + book)
-              print("Textblob functions")
               tmp = MyCommand.elo.data_txt(book)
               name = tmp[0]
-              note = tmp[1]
-              # print(name)
-              print(note)
+              blob = tmp[1]
+              noun = tmp[2]
+              print(name)
+              s = set(noun)
+              print("Nouns all " + format(len(noun)) + ", distinct " + format(len(s)))
+              print("Nouns\n" + format(s))
+              c = 0
+              for sen in blob.sentences:
+                  print("Sentence " + format(c) + "\n" + format(sen))
+                  c += 1
           except Exception as ex:
               print("Please give a valid cmd and select a txt that is saved.\ntxt_data title. Exception:" + format(ex))
 

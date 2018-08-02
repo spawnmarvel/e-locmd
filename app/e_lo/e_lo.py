@@ -77,7 +77,10 @@ class Elo():
         name = tmp[1]
         txt = tmp[2]
         blob = TextBlob(txt)
-        tu = (name, blob)
+        noun = []
+        for np in blob.noun_phrases:
+            noun.append(np)
+        tu = (name, blob, noun)
         return tu
 
 
