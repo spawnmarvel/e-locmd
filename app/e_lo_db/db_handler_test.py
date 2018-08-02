@@ -19,5 +19,9 @@ class TestDB(unittest.TestCase):
         book = tmp[1]
         self.assertEqual(book, "Hobbes.txt")
 
+    def tearDown(self):
+        pass
+
+
 if __name__ == "__main__":
     unittest.main()

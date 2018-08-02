@@ -1,5 +1,6 @@
 from datetime import datetime
 import random
+from textblob import TextBlob
 from app.e_lo_response import responses
 from app.e_lo_db import db_handler
 """ Elo is the interface to all functions, a controller. 
@@ -70,8 +71,14 @@ class Elo():
                 rv = "Unknown key for " + format(book) + ". Key search: " + format(args) + " type help txt_search"
         return rv
     # not implemented
-    def index_txt(self, args):
-        return "Indexing book " + format(args) + " to db .....\nbook saved"
+    def data_txt(self, args):
+        # make a revie of the txt, a list of size, sentences 
+        tmp = db_handler.select_book(args)
+        name = tmp[1]
+        txt = tmp[2]
+        blob = TextBlob(txt)
+        tu = (name, blob)
+        return tu
 
 
 

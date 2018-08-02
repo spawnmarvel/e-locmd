@@ -2,7 +2,6 @@ from datetime import datetime
 from cmd import Cmd
 import os
 # e-lo skills
-from textblob import TextBlob
 from utility import helper
 # e-lo
 from app.e_lo import e_lo as cls_elo
@@ -57,6 +56,7 @@ class MyCommand(Cmd):
                             if rv[1] == args:
                                 print("Book " + format(rv[1]) + " is already saved")
                             else:
+                                # will not use file reader on django, only db
                                 note = helper.read_file(filename)
                                 MyCommand.elo.insert_txt(args, note)
                    
@@ -75,20 +75,23 @@ class MyCommand(Cmd):
                 book = "That is not a saved book"
             else:
                 book = book
-            print(MyCommand.elo.search_txt(book, search_word))
+                print(MyCommand.elo.search_txt(book, search_word))
         except IndexError as i:
             print("Invalid params in cmd, type help")
 
     def do_txt_data(self, args):
-          """TextBlob functions is used here, book_data title key"""
+          """TextBlob functions is used here, book_data title"""
           try:
-              tmp = args.split(" ")
-              book = tmp[0]
-              key = tmp[1]
-              print("Get data for " + book + " key " + key)
+              book = args
+              print("Get data for " + book)
               print("Textblob functions")
+              tmp = MyCommand.elo.data_txt(book)
+              name = tmp[0]
+              note = tmp[1]
+              # print(name)
+              print(note)
           except Exception as ex:
-              print(ex)
+              print("Please give a valid cmd and select a txt that is saved.\ntxt_data title. Exception:" + format(ex))
 
     # implemented, must work on
     def do_talk(self, args):
