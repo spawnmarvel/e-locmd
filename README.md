@@ -10,7 +10,9 @@ First thing to know about cmd.Cmd: you subclass it and customize the subclass to
 class MyCommand(Cmd):
 def do_book_list(self, args):
 ```
-
+### todo
+<br>
+Feed e-lo, then talk about feed
 ### Prerequisites
 
 TBD

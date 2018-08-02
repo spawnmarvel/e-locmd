@@ -33,9 +33,9 @@ class MyCommand(Cmd):
     def do_txt_get(self, args):
         """Get the book, with title args and shows it on on screen if it exists"""
         if len(args) == 0:
-            print("Books saved is:  " + format(MyCommand.elo.get_txt_all()) + ". Type book_get title")
+            print("Txt saved is:  " + format(MyCommand.elo.get_txt_all()) + ". Type txt_get title")
         else:
-            print("Trying to fetch book> " + format(args))
+            print("Trying to fetch txt> " + format(args))
             rv = MyCommand.elo.get_txt(args)
             if rv == None:
                 print("No book named " + format(args))
@@ -45,34 +45,51 @@ class MyCommand(Cmd):
                 # print(db_handler.delete_book("redhood.txt"))
 
     # implemented, ok
-    def do_txt_list(self, args):
-        """List all the books in app-books, stored the book in args if present and the file exists"""
+    def do_txt_files(self, args):
+        """List all the files stored in ./information/ folder"""
         try:
-            for root, dirs, files in os.walk("./information"):
-                for filename in files:
-                    # print(filename)
-                    if len(args) > 0:
+             for root, dirs, files in os.walk("./information"):
+                 for filename in files:
+                     print(filename)
+
+        except Exception as ex:
+            print(ex)
+
+    def do_txt_index(self, args):
+        """List all the txt in folder and stored the txt in args if present and the file exists"""
+        file_exist = False
+        try:
+            if len(args) > 0:
+                for root, dirs, files in os.walk("./information"):
+                    for filename in files:
+                        # print(format(filename) + " =  " + format(args))
                         if filename == args:
+                            file_exist = True
                             rv = MyCommand.elo.get_txt(args)
                             # if return from get_text is none, we have not saved the book before
                             if rv != None:
                                 if rv[1] == args:
-                                    print("Book " + format(rv[1]) + " is already saved")      
+                                    print("txt " + format(rv[1]) + " is already saved")   
                             else:
                                 # will not use file reader on django, only db
                                 # the book from gte_text is none, w ehave not saved it before
                                 print("store file")
                                 note = helper.read_file(filename)
                                 MyCommand.elo.insert_txt(args, note)
+                    if file_exist:
+                        pass
+                    else:
+                        print(format(args) + " does not exist in ./information/ folder ")
+            else:
+                print("Please provide args and check the txt files in ./information/ folder")
                             
-                   
         except Exception as ex:
             print("here \n" + format(ex))
                     
     # implemnented, must work on
     def do_txt_search(self, args):
-        """Search a book for :\n["names", "nam", "places", "pla", "plot", "plo", "time", "ti", ]
-        \nbook_search hero names"""
+        """Search a txt for :\n["names", "nam", "places", "pla", "plot", "plo", "time", "ti", ]
+        \ntxt_search hero names"""
         try:
             tmp = args.split(" ")
             book = tmp[0]

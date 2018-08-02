@@ -5,11 +5,11 @@ from datetime import date, datetime
 conn = None
 datebase = "e_lo.db"
 
-sql_create_books = "create table if not exists books(id INTEGER PRIMARY KEY AUTOINCREMENT, title text check(length(title) <= 25) NOT NULL,  note text NOT NULL)"
-sql_insert_book = "insert into books (title, note) values (?, ?)"
-sql_select_book = "select * from books where title = ?"
-sql_delete_book = "delete from books where title = ?"
-sql_select_books = "select title from books"
+sql_create_books = "create table if not exists raw_txt(id INTEGER PRIMARY KEY AUTOINCREMENT, title text check(length(title) <= 25) NOT NULL,  note text NOT NULL)"
+sql_insert_book = "insert into raw_txt (title, note) values (?, ?)"
+sql_select_book = "select * from raw_txt where title = ?"
+sql_delete_book = "delete from rax_txt where title = ?"
+sql_select_books = "select title from raw_txt"
 sql_list_tables = "select name from sqlite_master where type='table'"
 
 def get_conn():
@@ -28,7 +28,7 @@ def init_db_book():
         cur = conn.cursor()
         global sql_create_books
         cur.execute(sql_create_books)
-        row = "Created db books if not exists"
+        row = "Created db raw_txt if not exists"
         msg = row
     except sqlite3.OperationalError as e:
         msg = e
