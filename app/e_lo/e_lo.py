@@ -39,6 +39,9 @@ class Elo():
         # 1 = id, 2 = title, 3 = txt
         # print(db_handler.select_book(args))
         return db_handler.select_book(args)
+    # implemented ok
+    def delete_txt(self, args):
+        return db_handler.delete_book(args)
     # implemented, ok
     def get_txt_all(self):
         return db_handler.get_books()

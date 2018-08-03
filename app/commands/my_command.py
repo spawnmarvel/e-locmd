@@ -30,6 +30,17 @@ class MyCommand(Cmd):
         print(self.elo.do_math())
 
     # implemented, ok
+    def do_txt_delete(self, args):
+        """Delete txt with args"""
+        if len(args) > 0:
+            rv = MyCommand.elo.get_txt(args)
+            if rv == None:
+                print("No such txt")
+            else:
+                print(MyCommand.elo.delete_txt(args))
+        else:
+            print("Please provide args, and a valid one")
+            
     def do_txt_get(self, args):
         """Get the book, with title args and shows it on on screen if it exists"""
         if len(args) == 0:
@@ -73,9 +84,9 @@ class MyCommand(Cmd):
                             else:
                                 # will not use file reader on django, only db
                                 # the book from gte_text is none, w ehave not saved it before
-                                print("store file")
+                                print("Storing file....")
                                 note = helper.read_file(filename)
-                                MyCommand.elo.insert_txt(args, note)
+                                print(MyCommand.elo.insert_txt(args, note))
                     if file_exist:
                         pass
                     else:
@@ -124,7 +135,7 @@ class MyCommand(Cmd):
 
     # implemented, must work on
     def do_talk(self, args):
-        """Pure random talking"""
+        """Pure random talking or talk about all that is fed to e-elo"""
         print(MyCommand.elo.greeting())
        
     # implemented, ok

@@ -19,7 +19,7 @@ def read_file(fi):
                         # need to add back .
                         msg += "."
     except UnicodeEncodeError as uce:
-        msg = "There is a strange sign in yout text " + fi
+        msg = "There is a strange sign in your text " + fi
     except Exception as ex:
         msg = "helper.py " + format(ex)
     # remove the last . we added
