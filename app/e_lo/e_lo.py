@@ -31,7 +31,7 @@ class Elo():
         self.response = responses.get_ran_response()
         return self.response
     # implemented, must work on
-    def do_math(self): 
+    def get_math(self): 
         self.response = "Ready for math"
         return self.response
     # implemented, ok

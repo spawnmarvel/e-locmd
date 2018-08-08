@@ -27,7 +27,7 @@ class MyCommand(Cmd):
     def do_math(self, args):
         """Teaching and testing you in math"""
         print("Yes, e-lo start math quiz")
-        print(self.elo.do_math())
+        print(self.elo.get_math())
 
     # implemented, ok
     def do_txt_delete(self, args):
