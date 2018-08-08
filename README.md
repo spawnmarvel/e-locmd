@@ -25,11 +25,11 @@ def do_txt_data(self, args):
 ### todo
 <br>
 ```
-1 Feed e-lo text data
-2 Analyze it / NLP
-3 Report of data
-4 Talk about it
-5 Learn about it
+Feed e-lo text data:
+Analyze it / NLP:
+Report of data:
+Talk about it:
+Learn about it:
 ```
 ### Prerequisites
 
