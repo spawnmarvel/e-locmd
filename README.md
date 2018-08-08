@@ -21,6 +21,7 @@ def do_txt_files(self, args):
 def do_txt_index(self, args):
 def do_txt_search(self, args):
 def do_txt_data(self, args):
+def do_txt_summary(self, args):
 ```
 
 

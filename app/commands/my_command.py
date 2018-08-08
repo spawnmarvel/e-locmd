@@ -132,6 +132,32 @@ class MyCommand(Cmd):
                   c += 1
           except Exception as ex:
               print("Please give a valid cmd and select a txt that is saved.\ntxt_data title. Exception:" + format(ex) + "\nSaved is " + format(MyCommand.elo.get_txt_all()))
+    def do_txt_summary(self, args):
+        """TextBlob , txt_summary title"""
+        try:
+            print("Summary")
+            txt = args
+            tmp = MyCommand.elo.data_txt(txt)
+            blob = tmp[1]
+            nouns = set()
+            for word, tag in blob.tags:
+                # print(tag)
+                if tag == "NN":
+                    nouns.add(word.lemmatize())
+            print("This text is about\n")
+            c = 0
+            rv = ""
+            for w in nouns:
+                if c == 5:
+                    rv += w.pluralize() + "\n"
+                    c = 0
+                else:
+                    
+                    rv += " " + w.pluralize()
+            print(rv)
+
+        except Exception as ex:
+            print(ex)
 
     # implemented, must work on
     def do_talk(self, args):
