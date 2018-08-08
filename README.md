@@ -24,13 +24,16 @@ def do_txt_data(self, args):
 ```
 ### todo
 <br>
-```
 Feed e-lo text data:
+<br>
 Analyze it / NLP:
+<br>
 Report of data:
+<br>
 Talk about it:
+<br>
 Learn about it:
-```
+<br>
 ### Prerequisites
 
 TBD
