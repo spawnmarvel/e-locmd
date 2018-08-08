@@ -3,16 +3,32 @@
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 <br>
+Install requirements.txt
+<br>
 ### Build
 First thing to know about cmd.Cmd: you subclass it and customize the subclass to be your command prompt.The methods of this subclass that begin with do_ are now your prompt commands.
 <br>
+Interface for NLP elo
 ```
 class MyCommand(Cmd):
-def do_book_list(self, args):
+
+def do_math(self, args):
+def do_talk(self, args):
+def do_q(self, args):
+def do_txt_delete(self, args):
+def do_txt_get(self, args):
+def do_txt_files(self, args):
+def do_txt_index(self, args):
+def do_txt_search(self, args):
+def do_txt_data(self, args):
 ```
 ### todo
 <br>
-Feed e-lo, then talk about feed
+1 Feed e-lo data with
+2 Analyze it
+3 Report of data
+4 Talk about it
+5 Learn about it
 ### Prerequisites
 
 TBD

@@ -40,7 +40,7 @@ class MyCommand(Cmd):
                 print(MyCommand.elo.delete_txt(args))
         else:
             print("Please provide args, and a valid one")
-            
+
     def do_txt_get(self, args):
         """Get the book, with title args and shows it on on screen if it exists"""
         if len(args) == 0:
@@ -99,7 +99,7 @@ class MyCommand(Cmd):
                     
     # implemnented, must work on
     def do_txt_search(self, args):
-        """Search a txt for :\n["names", "nam", "places", "pla", "plot", "plo", "time", "ti", ]
+        """Search a txt for data format for key :\n["names", "nam", "places", "pla", "plot", "plo", "time", "ti", ]
         \ntxt_search hero names"""
         try:
             tmp = args.split(" ")
@@ -114,7 +114,7 @@ class MyCommand(Cmd):
             print("Invalid params in cmd, type help")
 
     def do_txt_data(self, args):
-          """TextBlob functions is used here, book_data title"""
+          """TextBlob functions is used here, txt_data title"""
           try:
               print("add amount of words in file read, store in db")
               book = args
