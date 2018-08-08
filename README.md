@@ -3,7 +3,7 @@
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 <br>
-Install requirements.txt
+Mke a env, install requirements.txt
 <br>
 ### Build
 First thing to know about cmd.Cmd: you subclass it and customize the subclass to be your command prompt.The methods of this subclass that begin with do_ are now your prompt commands.
@@ -22,18 +22,17 @@ def do_txt_index(self, args):
 def do_txt_search(self, args):
 def do_txt_data(self, args):
 ```
-### todo
-<br>
-Feed e-lo text data:
-<br>
-Analyze it / NLP:
-<br>
-Report of data:
-<br>
-Talk about it:
-<br>
-Learn about it:
-<br>
+
+
+## ToDo
+
+* Feed e-lo text data: 95%
+* Analyze it / NLP: 30%
+* Report of data: 30%
+* Talk about it: 0%
+* Learn about it: 10%
+
+
 ### Prerequisites
 
 TBD
