@@ -8,7 +8,7 @@ Install requirements.txt
 ### Build
 First thing to know about cmd.Cmd: you subclass it and customize the subclass to be your command prompt.The methods of this subclass that begin with do_ are now your prompt commands.
 <br>
-Interface for NLP elo
+Interface for NLP e-lo
 ```
 class MyCommand(Cmd):
 
@@ -24,11 +24,13 @@ def do_txt_data(self, args):
 ```
 ### todo
 <br>
-1 Feed e-lo data with
-2 Analyze it
+```
+1 Feed e-lo text data
+2 Analyze it / NLP
 3 Report of data
 4 Talk about it
 5 Learn about it
+```
 ### Prerequisites
 
 TBD
