@@ -51,8 +51,17 @@ class MyCommand(Cmd):
             if rv == None:
                 print("No book named " + format(args))
             else:
-                # print(rv)
-                print("***\n" + rv[2] + "\n***")
+                print("Data:")
+                print("Title " + format(rv[1]))
+                print("Amount of sentences " + format(rv[3]))
+                print("Amount of words " + format(rv[4]))
+                avg_word_sentences = rv[5]
+                if avg_word_sentences > 20:
+                    print("Long sentences, avg for word in each sentences " + format(avg_word_sentences))
+                else:
+                     print("Long sentences, avg for word in each sentences " + format(avg_word_sentences))
+                print("Text:")
+                print(rv[2])
                 # print(db_handler.delete_book("redhood.txt"))
 
     # implemented, ok
@@ -91,7 +100,7 @@ class MyCommand(Cmd):
                                 words = tu[2]
                                 print(sentences)
                                 print(words)
-                                # print(MyCommand.elo.insert_txt(args, note))
+                                print(MyCommand.elo.insert_txt(args, text, sentences, words))
                     if file_exist:
                         pass
                     else:
@@ -137,19 +146,32 @@ class MyCommand(Cmd):
                   c += 1
           except Exception as ex:
               print("Please give a valid cmd and select a txt that is saved.\ntxt_data title. Exception:" + format(ex) + "\nSaved is " + format(MyCommand.elo.get_txt_all()))
+    
     def do_txt_summary(self, args):
         """TextBlob , txt_summary title"""
         try:
             print("Summary")
             txt = args
             tmp = MyCommand.elo.data_txt(txt)
+            data = tmp[3]
+            print("Data:")
+            print("Title " + format(data[1]))
+            print("Amount of sentences " + format(data[3]))
+            print("Amount of words " + format(data[4]))
+            avg_word_sentences = data[5]
+            if avg_word_sentences > 20:
+                print("Long sentences, avg for word in each sentences " + format(avg_word_sentences))
+            else:
+                print("Long sentences, avg for word in each sentences " + format(avg_word_sentences))
+            print("Text:")
+
             blob = tmp[1]
             nouns = set()
             for word, tag in blob.tags:
                 # print(tag)
                 if tag == "NN":
                     nouns.add(word.lemmatize())
-            print("This text is about\n")
+            print("This text is about:")
             c = 0
             rv = ""
             for w in nouns:

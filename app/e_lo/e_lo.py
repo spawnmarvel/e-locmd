@@ -46,9 +46,9 @@ class Elo():
     def get_txt_all(self):
         return db_handler.get_books()
     # implemented, ok
-    def insert_txt(self, title, args):
-        rv = db_handler.insert_book(title, args)
-        return "Saved: " + format(rv)
+    def insert_txt(self, title, text, sentences, words):
+        rv = db_handler.insert_book(title, text, sentences, words)
+        return "Status: " + format(rv)
     # implemented, must work on
     def search_txt(self, book, args):
         todo = args.lower()
@@ -83,7 +83,7 @@ class Elo():
         noun = []
         for np in blob.noun_phrases:
             noun.append(np)
-        tu = (name, blob, noun)
+        tu = (name, blob, noun, tmp)
         return tu
 
 

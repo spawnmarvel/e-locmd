@@ -5,8 +5,8 @@ from datetime import date, datetime
 conn = None
 datebase = "e_lo.db"
 
-sql_create_books = "create table if not exists raw_txt(id INTEGER PRIMARY KEY AUTOINCREMENT, title text check(length(title) <= 25) NOT NULL,  note text NOT NULL, senetences INTEGER, words INTEGER)"
-sql_insert_book = "insert into raw_txt (title, note) values (?, ?)"
+sql_create_raw_text = "create table if not exists raw_txt(id INTEGER PRIMARY KEY AUTOINCREMENT, title text check(length(title) <= 25) NOT NULL,  note text NOT NULL, sentences INTEGER, words INTEGER, avg_words_sent INTEGER)"
+sql_insert_book = "insert into raw_txt (title, note, sentences, words, avg_words_sent) values (?, ?, ?, ?, ?)"
 sql_select_book = "select * from raw_txt where title = ?"
 sql_delete_book = "delete from raw_txt where title = ?"
 sql_select_books = "select title from raw_txt"
@@ -28,8 +28,8 @@ def init_db_book():
         conn = get_conn()
         conn = sqlite3.connect(get_db())
         cur = conn.cursor()
-        global sql_create_books
-        cur.execute(sql_create_books)
+        global sql_create_raw_text
+        cur.execute(sql_create_raw_text)
         row = "Created db raw_txt if not exists"
         msg = row
     except sqlite3.OperationalError as e:
@@ -50,17 +50,20 @@ def get_books():
         msg = e
     return msg
 
-def insert_book(title, note):
+def insert_book(title, note, sen, word):
     msg = ""
     try:
         n_title = str(title)
         n_note = str(note)
+        n_sen = int(sen)
+        n_word = int(word)
+        avg_words_s = n_word / n_sen
         conn = get_conn()
         conn = sqlite3.connect(get_db())
         with conn:
             cur = conn.cursor()
             global sql_insert_book
-            cur.execute(sql_insert_book, (n_title, n_note))
+            cur.execute(sql_insert_book, (n_title, n_note, n_sen, n_word, avg_words_s))
             conn.commit()
             row = "Db txt saved"
             msg = row
