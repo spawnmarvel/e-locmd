@@ -85,8 +85,13 @@ class MyCommand(Cmd):
                                 # will not use file reader on django, only db
                                 # the book from gte_text is none, w ehave not saved it before
                                 print("Storing file....")
-                                note = helper.read_file(filename)
-                                print(MyCommand.elo.insert_txt(args, note))
+                                tu = helper.read_file(filename)
+                                text = tu[0]
+                                sentences = tu[1]
+                                words = tu[2]
+                                print(sentences)
+                                print(words)
+                                # print(MyCommand.elo.insert_txt(args, note))
                     if file_exist:
                         pass
                     else:
